@@ -76,7 +76,7 @@ If you want to see more detailed results(such as results in tensorboard and anal
 </details>
 
 <details open>
-<summary>test<summary>
+<summary>test</summary>
 In this process we will use pretrained weights to test our model. First prepare environment like tarining process. Then you need to download pretrained weights through this link:
  
 https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing
@@ -85,5 +85,5 @@ After cd into directorty "YOLOv3", just try:
 ```bash
 python val.py --weights /path/to/best.pt --data voc_2012test.yaml --img 416 --iou 0.5
 ```
-It's almost the same operation as validation process, but the test process operate on different dataset(no overlap).
-
+It's almost the same operation as validation process, but the test process operate on different dataset(no overlap).It may take some time to download dataset if you run this for the first time.
+</details>

@@ -57,5 +57,17 @@ python train.py --batch 32 --weights yolov3.pt --data voc.yaml  --epochs 75 --im
  
 If you have a wandb account, you can log in and visualize the results through wandb online. If you want to visualize your results on tensorboard, you may follow the steps in the part "A quick start".
  
-Furthermore, we offer a relatively simple method to visualize results. 
+Furthermore, we offer a relatively simple method to visualize results. You can use the function in plot_results(the function was adapted from ultralytics) like:
+ 
+```python
+from utils.plots import plot_results
+import matplotlib.pyplot as plt
+path_to_result = '/content/yolov3/VOC/yolov3/results.csv'
+plot_results(path_to_result)  # plot 'results.csv' as 'results.png'
+from google.colab.patches import cv2_imshow,cv2
+img=cv2.imread("/content/yolov3/VOC/yolov3/results.png")
+cv2_imshow(img)
+```
+Ideally, it will be similar to the iamge below:
 
+![image](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/results.png)

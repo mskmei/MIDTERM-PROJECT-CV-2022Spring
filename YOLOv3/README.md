@@ -68,7 +68,7 @@ from google.colab.patches import cv2_imshow,cv2
 img=cv2.imread("/content/yolov3/VOC/yolov3/results.png")
 cv2_imshow(img)
 ```
-Ideally, it will be similar to the iamge below:
+Ideally, it will be similar to the image below:
 
 ![image](https://raw.githubusercontent.com/mskmei/MIDTERM-PROJECT-CV-2022Spring/main/YOLOv3/results.png)
  
@@ -77,7 +77,7 @@ If you want to see more detailed results(such as results in tensorboard and anal
 
 <details open>
 <summary>test</summary>
-In this process we will use pretrained weights to test our model. First prepare environment like tarining process. Then you need to download pretrained weights through this link:
+In this process, we will use pre-trained weights to test our model. First, prepare the environment like the training process. Then you need to download pre-trained weights through this link:
  
 https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing
 
@@ -85,5 +85,15 @@ After cd into directorty "YOLOv3", just try:
 ```bash
 python val.py --weights /path/to/best.pt --data voc_2012test.yaml --img 416 --iou 0.5
 ```
-It's almost the same operation as validation process, but the test process operate on different dataset(no overlap).It may take some time to download dataset if you run this for the first time.
+It's almost the same operation as the validation process, but the test process operates on different datasets (no overlap). It may take some time to download the dataset if you run this for the first time.
 </details>
+<details open>
+<summary>inference</summary>
+This part can help you detect and visualize detected results. You need to download pre-trained weights first. Then simply put images into your input directory(which is set as data/images by default). Run the following order:
+ 
+```bash
+python detect.py --weights /path/to/best.pt --img 416 --conf 0.25 --source data/images
+```
+ 
+The results will be saved into runs/detect/exp. Ideally, the results will be similar to the images below.
+![image](https://raw.githubusercontent.com/mskmei/MIDTERM-PROJECT-CV-2022Spring/main/YOLOv3/person.jpg)

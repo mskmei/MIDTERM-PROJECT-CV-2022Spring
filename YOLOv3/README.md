@@ -70,4 +70,6 @@ cv2_imshow(img)
 ```
 Ideally, it will be similar to the iamge below:
 
-![image](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/results.png)
+![image](https://raw.githubusercontent.com/mskmei/MIDTERM-PROJECT-CV-2022Spring/main/YOLOv3/results.png)
+ 
+If you want to see more detailed results(such as results in tensorboard and analysis of the results), please turn to our experiment report.

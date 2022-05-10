@@ -9,4 +9,15 @@ In this experiment, we use VOC2007(both train data and validation data) to train
 As we implement the ed training and test process on colab with free GPU, we strongly recommend you get a quick start on colab. Please click the "open in colab" button above, and you can have a view of the training and validation process quickly.(The specific guidance for how to train on colab can be seen after you click the button)
 Besides, you can also open the file "yolov3_pytorch_cv.ipynb" in this directory. The file provides you with the results we got after training and validating on the VOC dataset.
 </details>
+
+ [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/YOLOv3/yolov3_test.ipynb) 
+ 
+<details>
+ <summary>Test</summary>   
+The test process is similar to training process, click the button above to get acess to more specific details concerning test process. You can also open the file "yolov3_test.ipynb" to have a overview as first.
+ 
+ As for the test process, we simply download the pre-trained model which is produced in the training process. The model was stored in my Google Drive and anyone can download it with the link below:
+ 
+ https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing
+</details>
 </div>

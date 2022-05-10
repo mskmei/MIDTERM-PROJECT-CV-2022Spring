@@ -3,7 +3,7 @@ This project is aimed at training YOLOv3 on the VOC dataset. As for the code, we
 ## <div align="center">Dataset</div>
 In this experiment, we use VOC2007(both train data and validation data) to train our model, use VOC2007(test data) to validate, and use VOC2012(only validation data) to test our model. If you want to change the data used for each part, you can manually modify the file "voc.yaml" and "voc_2012test.yaml" in "data" directory.
 ## <div align="center">A quick start(Strongly recommended)</div>
-PS: We have used tensorboard to visualize our results but we **only carry out tensorborad on colab** . Hence you may not get the visualization results provided by tensorboard on your own computer. We will offer you a more common way to visualize your results on your own computer
+PS: We have used tensorboard to visualize our results but we **only carry out tensorborad on colab**. Hence you may not get the visualization results provided by tensorboard on your own computer. We will offer you a more common way to visualize your results on your own computer
 
  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/YOLOv3/yolov3_pytorch_cv.ipynb)  
 <details open>
@@ -32,10 +32,10 @@ I still have to highlight that as we carried out the experiment smoothly on cola
 To start with, you need to get access to our files. You can try either
 
 ```bash
-git clone https://github.com/mskmei/yolov3.git
-cd YOLOv3
+git clone https://github.com/mskmei/MIDTERM-PROJECT-CV-2022Spring.git
+cd MIDTERM-PROJECT-CV-2022Spring/YOLOv3
 ```
-or download our project as a zip and unzip it locally and turn to YOLOv3 directory, you may try order like this:
+or download our project as a zip and unzip it locally and turn to "YOLOv3" directory, you may try order like this:
  
 ```bash
 cd path/to/YOLOv3
@@ -49,3 +49,13 @@ pip install -r requirements.txt
 
 <details open>
 <summary>train</summary>
+Make sure you have installed packages listed in requirements.txt and you already cd into the directory "YOLOv3". To start running the process, you need to run:
+ 
+```bash
+python train.py --batch 32 --weights yolov3.pt --data voc.yaml  --epochs 75 --img 416  --project VOC --name 'yolov3' --cache --hyp hyp.VOC.yaml 
+```
+ 
+If you have a wandb account, you can log in and visualize the results through wandb online. If you want to visualize your results on tensorboard, you may follow the steps in the part "A quick start".
+ 
+Furthermore, we offer a relatively simple method to visualize results. 
+

@@ -3,6 +3,8 @@ This project is aimed at training YOLOv3 on the VOC dataset. As for the code, we
 ## <div align="center">Dataset</div>
 In this experiment, we use VOC2007(both train data and validation data) to train our model, use VOC2007(test data) to validate, and use VOC2012(only validation data) to test our model. If you want to change the data used for each part, you can manually modify the file "voc.yaml" and "voc_2012test.yaml" in "data" directory.
 ## <div align="center">A quick start(Strongly recommended)</div>
+PS: We have used tensorboard to visualize our results but we **only carry out tensorborad on colab** . Hence you may not get the visualization results provided by tensorboard on your own computer. We will offer you a more common way to visualize your results on your own computer
+
  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/YOLOv3/yolov3_pytorch_cv.ipynb)  
 <details open>
  <summary>Train</summary>   
@@ -42,4 +44,8 @@ cd path/to/YOLOv3
 To construct the environment, you simply need to install the package in requirements.txt or just:
 ```bash
 pip install -r requirements.txt
+```
 </details>
+
+<details open>
+<summary>train</summary>

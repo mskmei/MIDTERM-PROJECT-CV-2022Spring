@@ -12,7 +12,7 @@ class CONFIG:
 
 
     # data augmentation
-    resize        = (64, 64)
+    resize        = (224, 224)
     augmentation  = True
     cut           = 56            # size of Cutout, set to zero to disable
     mix           = True          # enable (True) / disable (False) Mixup
@@ -24,6 +24,8 @@ class CONFIG:
     train_size    = 64            # training batch size
     test_size     = 100           # testing batch size
     epochs        = 30
-    learning_rate = 3e-3          # learning rate for Adam
+    learning_rate = 3e-3          # learning rate for optimizer
+    weight_decay  = 5e-4          # weight-decay for regularization
+    optimizer     = 'sgd'         # support 'adam' / 'sgd'
     decay         = (11, 21)      # learning rate decays at these epochs
     decay_rate    = .1            # learning rate decays by the rate

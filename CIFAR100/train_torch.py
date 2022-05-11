@@ -10,7 +10,15 @@ cuda = CONFIG.device
 
 # Network Definition
 net = network(CONFIG.net, pretrained = CONFIG.pretrained, cuda = cuda)
-optim = torch.optim.Adam(net.parameters(), lr = CONFIG.learning_rate)
+
+if CONFIG.optimizer.lower() == 'adam':
+    optim = torch.optim.Adam(net.parameters(), 
+                             lr = CONFIG.learning_rate,
+                             weight_decay = CONFIG.weight_decay)
+else: 
+    optim = torch.optim.SGD(net.parameters(), 
+                             lr = CONFIG.learning_rate,
+                             weight_decay = CONFIG.weight_decay)
 
 losses = []
 accs = []
@@ -35,7 +43,15 @@ for epoch in range(len(accs) + 1, epochs + len(accs) + 1):
                                  cut = CONFIG.cut, mix = CONFIG.mix, onehot = True):
         y = net(x.to(cuda)) 
         labels = torch.tensor(labels, dtype = torch.float32, device = cuda) 
-        loss = torch.nn.BCEWithLogitsLoss()(y, labels)
+        
+        # torch.nn.BCEWithLogitsLoss = Sigmoid + BCE
+        # seemingly not good in practice
+        #loss = torch.nn.BCEWithLogitsLoss()(y, labels)
+        
+        # we shall use Softmax + BCE
+        y = torch.nn.Softmax(dim=-1)(y)
+        loss = torch.nn.functional.binary_cross_entropy(y, labels)
+        
         losses.append(loss.item())
         optim.zero_grad()
         loss.backward()

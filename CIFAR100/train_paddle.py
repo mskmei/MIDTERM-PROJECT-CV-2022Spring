@@ -17,8 +17,15 @@ net = network(CONFIG.net, pretrained = CONFIG.pretrained)
 #                                    learning_rate = lr,
 #                                    weight_decay=paddle.regularizer.L2Decay(1e-6))
 
-optim = paddle.optimizer.Adam(parameters = net.parameters(), learning_rate = CONFIG.learning_rate)
 
+if CONFIG.optimizer.lower() == 'adam':
+    optim = paddle.optimizer.Adam(parameters = net.parameters(),
+                                  learning_rate = CONFIG.learning_rate,
+                                  weight_decay = CONFIG.weight_decay)
+else: 
+    optim = paddle.optimizer.SGD(parameters = net.parameters(),
+                                 learning_rate = CONFIG.learning_rate,
+                                 weight_decay = CONFIG.weight_decay)
 
 losses = []
 accs = []

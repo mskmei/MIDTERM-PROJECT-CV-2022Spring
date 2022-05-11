@@ -2,8 +2,44 @@ import numpy as np
 from PIL import Image 
 
 def augmentate(pics, labels = None, augmentation = False, 
-                cut = False, mix = False, rotate = 15):
-    '''Simple data augmentator'''
+                cut = 0, mix = False, rotate = 15):
+    '''
+    Simple data augmentator.
+    
+    Parameters
+    ----------
+    pics: list of PIL image of the same size 
+        The images for augmentation.
+
+    labels: N x C  ndarray
+        Onehot-encoded labels.
+    
+    augmentation: boolean
+        Whether or not use the augmentation. If set to False, the function will 
+        only convert the PIL list to ndarray.
+
+    cut: int
+        The size of a Cutout area = (cut x cut). Set to 0 to disable Cutout.
+    
+    mix: boolean
+        Whether or not to enable Mixup. If cut > 0 and mix == True, then CutMix will 
+        be activated.
+
+    rotate: int
+        All images will be randomly rotated by an angle no more than the bound. Set 
+        to 0 to skip rotation.
+    
+    Returns
+    ----------
+    pics2: (N x H x W x C)  ndarray
+        Represents all the images.
+
+    labels: (N * Classes)  ndarray
+        The modified labels after augmentation. (Cutout, Mixup or CutMix will 
+        change the labels.)
+    
+    '''
+
     pics2 = []
     n = len(pics)
 
@@ -37,7 +73,7 @@ def augmentate(pics, labels = None, augmentation = False,
         proportion = np.random.random(n)
 
         # warning: do not modify in-place
-        pics3 = [proportion[i] * pics2[i] + (1 - proportion[i]) * pics2[couple[i]] 
+        pics3 = [proportion[i] * pics2[couple[i]] + (1 - proportion[i]) * pics2[i] 
                     for i in range(n)]
 
         # pointer
@@ -69,10 +105,10 @@ def augmentate(pics, labels = None, augmentation = False,
             
     return np.array(pics2), labels
  
-
+ 
 def resizer(pics, size):
     '''
-    resize pictures to the given size
+    Resize images to the given size.
     '''
     if issubclass(type(pics[0]), np.ndarray):
         pics = [Image.fromarray(pic) for pic in pics]
@@ -81,3 +117,4 @@ def resizer(pics, size):
         pics[i] = pics[i].resize(size, Image.ANTIALIAS)
     
     return pics
+

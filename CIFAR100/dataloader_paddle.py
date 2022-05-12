@@ -43,7 +43,7 @@ def topk(y, labels, top):
 
 
 def test(net, data, labels, batch_size = 100, tops = [1,5],
-            verbose = False, augmentation = False):
+            verbose = False, augmentation = False, cuda = None):
     accs = [0] * len(tops)
     tops.sort()
     with paddle.no_grad():
@@ -56,19 +56,30 @@ def test(net, data, labels, batch_size = 100, tops = [1,5],
     return np.array(accs) / labels.shape[0]
     
 
-def preprocessor(data_file, resize = (32,32)):
+def preprocessor(data_file, resize = (32,32), only_test = False):
     from paddle.vision.datasets import Cifar100
-    data = Cifar100(data_file = data_file, mode = 'train')
-    train_x = [data[i][0] for i in range(50000)]
-    train_y = np.array([data[i][1] for i in range(50000)])
-    del data 
+    
+    try:
+        data = Cifar100(data_file = data_file, mode = 'test')
+    except:
+        print('Data file not found.')
+        data_file = None
+        data = Cifar100(data_file = data_file, mode = 'test')
 
-    data = Cifar100(data_file = data_file, mode = 'test')
-    test_x = [data[i][0] for i in range(10000)]
     test_y = np.array([data[i][1] for i in range(10000)])
+    test_x = [data[i][0] for i in range(10000)]
+    test_x = resizer(test_x, size = resize)
     del data 
 
-    train_x = resizer(train_x, size = resize)
-    test_x = resizer(test_x, size = resize)
+
+    if not only_test:
+        data = Cifar100(data_file = data_file, mode = 'train')
+        train_y = np.array([data[i][1] for i in range(50000)])
+        train_x = [data[i][0] for i in range(50000)]
+        train_x = resizer(train_x, size = resize)
+        del data 
+    else:
+        train_x, train_y = 0, 0
+
     return (train_x, train_y) , (test_x, test_y)
 

@@ -55,19 +55,30 @@ def test(net, data, labels, batch_size = 100, tops = [1,5],
     return np.array(accs) / labels.shape[0]
     
 
-def preprocessor(data_file, resize = (32,32)):
+def preprocessor(data_file, resize = (32,32), only_test = False):
     from torchvision.datasets import CIFAR100
-    data = CIFAR100(root = data_file, train = True, download = True)
-    train_x = [data[i][0] for i in range(50000)]
-    train_y = np.array([data[i][1] for i in range(50000)])
-    del data 
 
-    data = CIFAR100(root = data_file, train = False, download = True)
-    test_x = [data[i][0] for i in range(10000)]
+    try:
+        data = CIFAR100(root = data_file, train = False, download = True)
+    except:
+        print('Data file not found.')
+        data_file = './'
+        data = CIFAR100(root = data_file, train = False, download = True)
+
     test_y = np.array([data[i][1] for i in range(10000)])
+    test_x = [data[i][0] for i in range(10000)]
+    test_x = resizer(test_x, size = resize)
     del data 
 
-    train_x = resizer(train_x, size = resize)
-    test_x = resizer(test_x, size = resize)
+
+    if not only_test:
+        data = CIFAR100(root = data_file, train = True, download = True)
+        train_y = np.array([data[i][1] for i in range(50000)])
+        train_x = [data[i][0] for i in range(50000)]
+        train_x = resizer(train_x, size = resize)
+        del data 
+    else:
+        train_x, train_y = 0, 0
+ 
     return (train_x, train_y) , (test_x, test_y)
 

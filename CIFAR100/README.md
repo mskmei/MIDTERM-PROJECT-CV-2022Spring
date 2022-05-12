@@ -12,7 +12,7 @@ Here we offer two notebooks on different platforms to play around. In AIStudio w
  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/CIFAR100/notebook/CIFAR100_torch.ipynb)</div>
 <details open>
   
-## <div align="center">Train on your own</div>
+## <div align="center">Training</div>
 We have offered two entrances for training, **PaddlePaddle** and **PyTorch**. One can train with either package that he or she is familiar with. 
  
 <summary>Install</summary>
@@ -22,38 +22,53 @@ To start with, you need to get access to our files. You can try either
 git clone https://github.com/mskmei/MIDTERM-PROJECT-CV-2022Spring.git
 cd MIDTERM-PROJECT-CV-2022Spring/CIFAR100
 ```
-or download our project as a zip and unzip it locally and turn to "CIFAR100" directory. Then 
+or download our project as a zip and unzip it locally and turn to "CIFAR100" directory. Then we come up with two choices.
  
-<summary>PaddlePaddle</summary>
-Dependencies:
-1. paddlepaddle-gpu
-2. tqdm
-3. PIL
-4. visualdl
+ <h2>Choice A. PaddlePaddle</h2>
+<h3>Dependencies</h3>
  
-<summary>PyTorch</summary>
-Dependencies:
-1. pytorch 
-2. tqdm
-3. PIL
-4. tensorboard
+1. paddlepaddle-gpu >= 2
+2. visualdl == 2.2.3
+3. tqdm
+4. PIL
+5. numpy
  
+ <h3>Configuration</h3>
+ Open **configs.py** and configure the paths, GPUs, training parameters, etc.
  
-<summary>train</summary>
-Make sure you have installed packages listed in requirements.txt and you already cd into the directory "YOLOv3". To start running the process, you need to run:
+ <h3>Train</h3>
+Run **train_paddle.py**, or
+ ```bash
+python train_paddle.py
+ ```
  
-```bash
-python train.py --batch 32 --weights yolov3.pt --data voc.yaml  --epochs 75 --img 416  --project VOC --name 'yolov3' --cache --hyp hyp.VOC.yaml 
-```
+ <br>
  
+ <h2>Choice B. PyTorch</h2>
+ <h3>Dependencies </h3>
  
-<summary>test</summary>
+1. pytorch + cuda
+3. tensorboard == 2.9.0
+4. tqdm
+5. PIL
+6. numpy 
+ 
+ <h3>Configuration</h3>
+ Open **configs.py** and configure the paths, CUDAs, training parameters, etc.
+ 
+ <h3>Train</h3>
+Run **train_torch.py**, or
+ ```bash
+python train_torch.py
+ ```
+ 
+## <div align="center">Testing</div>
 We have prepared **test.py** for one to easily test a ResNet-18 model trained on 224 x 224 images on CIFAR-100! Just type in 
 
 ```bash
 python test.py
  ```
  
-or manually run the file, and the program will ask for inputting the path to your model. Both **.pdparams** and **.pth** files are supported. Then, it will ask for the index of cuda to run your model on (the process will be omitted if no cuda is available). 
+or manually execute the file, and the program will ask for inputting the path to your model. Both **.pdparams** and **.pth** files are supported. Then, it will ask for the index of cuda to run your model on (the process will be omitted if no cuda is available). 
  
  Lastly, wait for a few seconds to obtain the result!

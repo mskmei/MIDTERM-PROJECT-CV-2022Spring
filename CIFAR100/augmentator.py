@@ -64,7 +64,7 @@ def augmentate(pics, labels = None, augmentation = False,
         for i in range(n):
             pics2[i][cutx[i]-cut : cutx[i], 
                         cuty[i]-cut : cuty[i], : ] = 0
-        labels *= (1. - cut * cut / pics2[0].size)
+        labels *= (1. - cut * cut / (pics2[0].size / 3.))
 
     elif mix and not cut:
         # mixup

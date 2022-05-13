@@ -11,7 +11,7 @@ Here we offer two notebooks on different platforms to play around. In AIStudio w
 [Open In AIStudio](https://aistudio.baidu.com/aistudio/projectdetail/3824197?contributionType=1&shared=1)
  
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/CIFAR100/notebook/CIFAR100_torch.ipynb)</div>
-<details open>
+ 
   
 ## <div align="center">Training</div>
 We have offered two entrances for training, **PaddlePaddle** and **PyTorch**. One can train with either package that he or she is familiar with. 

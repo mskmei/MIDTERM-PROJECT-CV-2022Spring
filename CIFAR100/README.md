@@ -4,7 +4,7 @@ This project is about experimenting data augmentation methods, Cutout, Mixup and
 ## <div align="center">Dataset</div>
 In this experiment, we choose CIFAR-100 dataset to experiment on. It contains 50,000 natural images in the training dataset while 10,000 for testing. Each of them is of size 32 x 32, categorized in one of the 100 classes.
 
-## <div align="center">A quick start</div>
+## <div align="center">A Quick Start</div>
 Here we offer two notebooks on different platforms to play around. In AIStudio we implement with paddlepaddle while in Colab we implement with PyTorch. The training is light as a simple illustration of how things work. Make sure to run the notebook in GPU environment!
 <div align="center">
  
@@ -15,8 +15,7 @@ Here we offer two notebooks on different platforms to play around. In AIStudio w
   
 ## <div align="center">Training</div>
 We have offered two entrances for training, **PaddlePaddle** and **PyTorch**. One can train with either package that he or she is familiar with. 
- 
-<summary>Install</summary>
+  
 To start with, you need to get access to our files. You can try either
 
 ```bash

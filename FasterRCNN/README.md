@@ -1,103 +1,100 @@
-## <div align="center">Introduction</div>
-This project is about experimenting data augmentation methods, Cutout, Mixup and CutMix. 
+# <div align="center">A Simple Implementation of Faster RCNN</div>
 
-## <div align="center">Dataset</div>
-In this experiment, we choose CIFAR-100 dataset to experiment on. It contains 50,000 natural images in the training dataset while 10,000 for testing. Each of them is of size 32 x 32, categorized in one of the 100 classes.
+## Introduction
+This project is an implementation of Faster RCNN (based on Resnet50 or VGG16). In this experiment, we use the train data and validation data of VOC2007 as the training set, and use the test data of VOC2007 as validation set. When testing, we use the validation data of VOC2012.The Resnet50-based model has **mAP**=0.649, **mIOU**=0.609, and **acc**=0.806 on the testing set, and the VGG-based model has **mAP**=0.644, **mIOU**=0.643, and **acc**=0.821 on the testing set.
 
-## <div align="center">A Quick Start</div>
-Here we offer two notebooks on different platforms to play around. In AIStudio we implement with paddlepaddle while in Colab we implement with PyTorch. The training is light as a simple illustration of how things work. Make sure to run the notebook in GPU environment!
-<div align="center">
- 
-[Open In AIStudio](https://aistudio.baidu.com/aistudio/projectdetail/3824197?contributionType=1&shared=1)
- 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mskmei/MIDTERM-PROJECT-CV-2022Spring/blob/main/CIFAR100/notebook/CIFAR100_torch.ipynb)</div>
- 
-  
-## <div align="center">Training</div>
-We have offered two entrances for training, **PaddlePaddle** and **PyTorch**. One can train with either package that he or she is familiar with. 
-  
-To start with, you need to get access to our files. You can try either
+## Installation
+
+**1.** Clone the FasterRCNN repository.
 
 ```bash
-git clone https://github.com/mskmei/MIDTERM-PROJECT-CV-2022Spring.git
-cd MIDTERM-PROJECT-CV-2022Spring/CIFAR100
+git clone https://github.com/Ulricman/MIDTERM-PROJECT-CV-2022Spring.git
 ```
-or download our project as a zip and unzip it locally and turn to "CIFAR100" directory. Then we come up with two choices.
- 
- <h2>Choice A. PaddlePaddle</h2>
-<h3>Dependencies</h3>
- 
-Python 3.x
- 
-1. paddlepaddle-gpu >= 2
-2. visualdl == 2.2.3
-3. tqdm
-4. PIL
-5. numpy
- 
- <h3>Configuration</h3>
- 
- Open **configs.py** and configure the paths, GPUs, training parameters, etc.
- 
- <h3>Train</h3>
- 
-Run **train_paddle.py**, or
- 
- ```bash
-python train_paddle.py
- ```
- 
- <br>
- 
- <h2>Choice B. PyTorch</h2>
- <h3>Dependencies </h3>
- 
-Python 3.x
- 
-1. pytorch + cuda
-3. tensorboard == 2.9.0
-4. tqdm
-5. PIL
-6. numpy 
- 
- <h3>Configuration</h3>
- 
- Open **configs.py** and configure the paths, CUDAs, training parameters, etc.
- 
- <h3>Train</h3>
- 
-Run **train_torch.py**, or
- 
- ```bash
-python train_torch.py
- ```
- 
-## <div align="center">Testing</div>
-We have prepared **test.py** for one to easily test a ResNet-18 model trained on 224 x 224 images on CIFAR-100! Just type in 
 
+**2.** Build a new environment with conda.
+Our environment is a Linux system with CUDA version == 11.4.
 ```bash
-python test.py
- ```
- 
-or manually execute the file, and the program will ask for inputting the path to your model. Both **.pdparams** and **.pth** files are supported. Then, it will ask for the index of cuda to run your model on (the process will be omitted if no cuda is available). 
- 
- Here we also offer two already-trained models for testing,
+conda create -n faster python==3.8
+conda activate faster
+```
 
-* [PaddlePaddle Model](https://pan.baidu.com/s/1WksUUnOl8P2fgpLPFvJtzw)
-extracting password: **2c4l**
- 
-* [PyTorch Model](https://pan.baidu.com/s/1UrhtZUk4bl4OztIQN44YrA)
-extracting password: **huqt**
+**3.** Install the needed packages.
+```bash
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+pip install tensorflow
+pip install opencv-python
+cd FasterRCNN
+pip install -r requirements.txt
+```
 
- Lastly, wait for a few seconds to obtain the result! (Maybe a few minutes if CIFAR-100 dataset needs to be downloaded.)
 
- 
-## <div align="center">Data Preparation</div>
+## Dataset Preparation
+ **1.** Download the training, validation, test data and VOCdevkit
 
-We place this part in the final because this is NOT a must-do. The program will automatically fetch the CIFAR-100 dataset if you do not have any.
- 
-However,  if you are struck with the automatic download of the CIFAR-100 dataset (i.e. bad network connection), or you want to use a already-existed CIFAR-100 file,  this part might be helpful. The dataset can be accessed elsewhere, for example at [CIFAR](http://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz).
- 
-Open the **configs.py** and customize the ``data_file``. If you are working with PaddlePaddle, set `data_file` the path to **cifar-100-python.tar.gz**. If you are working with PyTorch, set `data_file` to the folder that contains **cifar-100-python.tar.gz**.
- 
- Leave `data_file   = None` as default and for automatic downloads.
+	```Shell
+	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
+	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
+	```
+
+**2.** Extract all of these tars into one directory named `VOCdevkit`
+
+	```Shell
+	tar xvf VOCtrainval_06-Nov-2007.tar
+	tar xvf VOCtest_06-Nov-2007.tar
+	tar xvf VOCdevkit_08-Jun-2007.tar
+	```
+
+**3.** It should have this basic structure
+
+	```Shell
+  	$VOCdevkit/                           # development kit
+  	$VOCdevkit/VOCcode/                   # VOC utility code
+  	$VOCdevkit/VOC2007                    # image sets, annotations, etc.
+  	# ... and several other directories ...
+  	```
+
+   
+   
+   
+## Train
+Train the model with this line of command:
+```bash
+python train.py
+```
+The code is default to use GPU when training, predicting, and testing, so if you use CPU to train the model, use this line of command:
+```bash
+python train.py --cuda False
+```
+Besides, considering that our implementation has two backbone to choose, the default is Resnet50, so if you want to train the model with VGG as the backbone (with GPU), use this line of command:
+```bash
+python train.py --backbone vgg
+```
+
+## Test
+Test the trained model with this line of command:
+```bash
+python test.py --weights --path-to/your trained model
+```
+The default model is our pretrained model **model_data/resnet50_faster.pth** with the Resnet50 as the backbone.
+
+## Predict
+You can use the image **FasterRCNN/img/street.jpg** to have a look of your trained model using
+```bash
+python predict.py --weights --path-to/your trained model --img --path-to/FasterRCNN/img/street.jpg
+```
+
+## Pretrained Model
+There are four pretrained model you can download through Google Drive:
+Our pretrained model:
+
+vgg_faster.pth https://drive.google.com/file/d/1niTR2cD5di8_-JfQyPEpgeyHfGGyCiUr/view?usp=sharing
+
+resnet50_faster https://drive.google.com/file/d/1Ujds2mvsNLc8cXHH6827S-K_SfmV0Ssg/view?usp=sharing
+
+The pretrained model of Resnet50 and VGG for training:
+
+resnet50-19c8e357.pth https://drive.google.com/file/d/1Rq9Qk5xaphA56VTD2ysNvps6Ij2SPQbl/view?usp=sharing
+
+vgg16-397923af.pth https://drive.google.com/file/d/1Dq3F3lrX4Wwk-QEy-nNH1K7ECPVOrum8/view?usp=sharing
+

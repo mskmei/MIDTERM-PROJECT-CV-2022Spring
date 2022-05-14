@@ -79,7 +79,7 @@ If you want to see more detailed results(such as results in tensorboard and anal
 <summary>test</summary>
 In this process, we will use pre-trained weights to test our model. First, prepare the environment like the training process. Then you need to download pre-trained weights through this link:
  
-https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing
+* [YOLOv3 pretrained Model](https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing)
 
 After cd into directorty "YOLOv3", just try:
 ```bash

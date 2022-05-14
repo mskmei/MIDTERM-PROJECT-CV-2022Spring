@@ -21,7 +21,7 @@ The test process is similar to the training process, click the button above to g
  
  As for the test process, we simply download the pre-trained model which is produced in the training process. The model was stored in my Google Drive and anyone can download it with the link below:
  
- https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing
+* [YOLOv3 pretrained Model](https://drive.google.com/file/d/1Pglfi0Y8poLzsEPrNgKb0GYXpVjwKtn1/view?usp=sharing)
 </details>
 
 ## <div align="center">Train on own computer</div>

@@ -52,6 +52,7 @@ pip install -r requirements.txt
    
    
 ## Train
+Before trainig the model, make sure you have changed the root_path in train.py.
 Train the model with this line of command:
 ```bash
 python train.py
@@ -66,6 +67,7 @@ python train.py --backbone vgg
 ```
 
 ## Test
+Before testing the model, make sure you have changed the root_path in test.py.
 Test the trained model with this line of command:
 ```bash
 python test.py --weights --path-to/your trained model
@@ -73,6 +75,7 @@ python test.py --weights --path-to/your trained model
 The default model is our pretrained model **model_data/resnet50_faster.pth** with the Resnet50 as the backbone.
 
 ## Predict
+Also, before predicting, change the root_path in predict.py.
 You can use the image **FasterRCNN/img/street.jpg** to have a look of your trained model using
 ```bash
 python predict.py --weights --path-to/your trained model --img --path-to/FasterRCNN/img/street.jpg

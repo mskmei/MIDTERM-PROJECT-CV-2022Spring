@@ -21,7 +21,7 @@ conda activate faster
 conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 pip install tensorflow
 pip install opencv-python
-cd FasterRCNN
+cd MIDTERM-PROJECT-CV-2022Spring/FasterRCNN
 pip install -r requirements.txt
 ```
 

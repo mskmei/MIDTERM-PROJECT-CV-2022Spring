@@ -50,10 +50,12 @@ pip install -r requirements.txt
    
    
 ## Train
-Before trainig the model, make sure you have changed the root_path in train.py.
-Train the model with this line of command:
+Before training and other operations, run **evaluation.py** first to get the ground-truth so that you can get the evaluation along the way.
+
+
+Train the model with this line of command (if you choose to train with a pretrained model else change the 'True' to 'False'):
 ```bash
-python train.py
+python train.py --pretrained True
 ```
 The code is default to use GPU when training, predicting, and testing, so if you use CPU to train the model, use this line of command:
 ```bash
@@ -62,6 +64,7 @@ python train.py --cuda False
 Besides, considering that our implementation has two backbone to choose, the default is Resnet50, so if you want to train the model with VGG as the backbone (with GPU), use this line of command:
 ```bash
 python train.py --backbone vgg
+```
 ```
 
 ## Test

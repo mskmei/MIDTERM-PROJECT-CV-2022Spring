@@ -8,7 +8,7 @@ This project is an implementation of Faster RCNN (based on Resnet50 or VGG16). I
 **1.** Clone the FasterRCNN repository.
 
 ```bash
-git clone [https://github.com/Ulricman/MIDTERM-PROJECT-CV-2022Spring.git](https://github.com/mskmei/MIDTERM-PROJECT-CV-2022Spring.git)
+git clone https://github.com/mskmei/MIDTERM-PROJECT-CV-2022Spring.git
 ```
 
 **2.** Build a new environment with conda.

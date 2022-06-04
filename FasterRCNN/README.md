@@ -65,7 +65,7 @@ Besides, considering that our implementation has two backbone to choose, the def
 ```bash
 python train.py --backbone vgg
 ```
-```
+
 
 ## Test
 Before testing the model, make sure you have changed the root_path in test.py.
